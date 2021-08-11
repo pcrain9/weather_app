@@ -1,0 +1,48 @@
+.nav{
+    position:fixed;
+    top:0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: darkblue;
+    width:100%;
+}
+
+.weekly_weather{
+    margin-left:100px;
+    margin-bottom:10px;
+    text-decoration: none;
+    width:75px;
+    padding:1px 1px;
+    color:white;
+    text-align: center;
+    border-bottom: 1px solid transparent;
+}
+
+.weekly_weather:hover{
+    border-bottom: 1px solid white;
+}
+
+.daily_weather{
+    margin-right:100px;
+    margin-bottom:10px;
+    text-decoration: none;
+    width:75px;
+    padding:1px 1px;
+    color:white;
+    text-align: center;
+    border-bottom: 1px solid transparent;
+}
+
+.daily_weather:hover{
+    border-bottom: 1px solid white;
+}
+
+.query{
+    margin-top:20px;
+    width:50px;
+}
+
+.query:focus{
+    background-color: gray;
+}

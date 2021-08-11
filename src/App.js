@@ -7,19 +7,19 @@ import DailyWeatherPage from './pages/DailyWeatherPage';
 import WelcomePage from './pages/WelcomePage';
 
 function App() {
+
   return (
     <>
       <HomePage />
-      
+      <WelcomePage />
       <Switch>
         <Route path="/weeklyweatherpage">
-          <WeeklyWeatherPage />
+          <WeeklyWeatherPage/>
         </Route>
         <Route path="/dailyweatherpage">
           <DailyWeatherPage />
         </Route>
       </Switch>
-      <WelcomePage />
     </>
   )
 }
