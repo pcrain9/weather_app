@@ -1,19 +1,15 @@
 import React from 'react'
-import { Route, Switch } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
-import WeeklyWeather from '../components/WeeklyWeather';
-import DailyWeather from '../components/DailyWeather';
+import classes from './HomePage.module.css';
+
 
 function HomePage() {
     return (
-        <Switch>
-            <Route path="/weeklyweather">
-                <WeeklyWeatherPage />
-            </Route>
-            <Route path="dailyweather">
-                <DailyWeather />
-            </Route>
-        </Switch>
+        <div className={classes.nav}>
+            <NavLink to="/weeklyweatherpage" className={classes.weekly_weather}>Weekly Weather</NavLink>
+            <NavLink to="/dailyweatherpage" className={classes.daily_weather}>Daily <br/>Weather</NavLink>
+        </div>
     );
 }
 

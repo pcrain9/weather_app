@@ -1,19 +1,27 @@
 import React from 'react';
-import { Switch, Route } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 
+import HomePage from './pages/HomePage';
 import WeeklyWeatherPage from './pages/WeeklyWeatherPage';
-
+import DailyWeatherPage from './pages/DailyWeatherPage';
+import WelcomePage from './pages/WelcomePage';
 
 function App() {
   return (
-    <Switch>
-      <Route path="/">
-        <HomePage />
-      </Route>
-      <Route path="/weeklyweather">
-        <WeeklyWeatherPage />
-      </Route>
-    </Switch>
+    <>
+      <HomePage />
+      <Switch>
+        <Route exact path="/">
+          <WelcomePage />
+        </Route>
+        <Route path="/weeklyweatherpage">
+          <WeeklyWeatherPage />
+        </Route>
+        <Route path="/dailyweatherpage">
+          <DailyWeatherPage />
+        </Route>
+      </Switch>
+    </>
   )
 }
 
