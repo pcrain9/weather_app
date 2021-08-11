@@ -10,10 +10,8 @@ function App() {
   return (
     <>
       <HomePage />
+      
       <Switch>
-        <Route exact path="/">
-          <WelcomePage />
-        </Route>
         <Route path="/weeklyweatherpage">
           <WeeklyWeatherPage />
         </Route>
@@ -21,6 +19,7 @@ function App() {
           <DailyWeatherPage />
         </Route>
       </Switch>
+      <WelcomePage />
     </>
   )
 }

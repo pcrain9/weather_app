@@ -16,6 +16,7 @@ function WeeklyWeather() {
                 DUMMY_WEATHER.map(element => {
                     return(
                     <DailyWeather
+                    key={element.id}
                     id={element.id}
                     day={element.day}
                     forecast={element.forecast} />)

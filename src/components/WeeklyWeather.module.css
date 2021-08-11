@@ -2,6 +2,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top:100px;
+    animation: loadWeather .5s ease-in;
+    text-align: center;
+}
 
+@keyframes loadWeather {
+    0%{
+        transform: translateY(25%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+    
 }
 
