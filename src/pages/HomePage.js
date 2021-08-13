@@ -1,11 +1,17 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import Home from '../components/Home';
+import PlaceFinder from '../components/PlaceFinder';
+import classes from './HomePage.module.css';
 
 function HomePage() {
 
     return (
-        <Home />
+        <div className={classes.nav}>
+            <NavLink to="/weeklyweatherpage" className={classes.weekly_weather}>Weekly Weather</NavLink>
+            <PlaceFinder />
+            <NavLink to="/dailyweatherpage" className={classes.daily_weather}>Daily <br />Weather</NavLink>
+        </div >
     );
 }
 
