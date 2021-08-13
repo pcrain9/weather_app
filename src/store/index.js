@@ -1,30 +1,11 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import locationAndForecastSlice from './location-forecast-slice';
 
-const locationSlice = createSlice({
-    name:"location",
-    initialState: {location: "", 
-        coordinates: {
-            lat:0,
-            lng:0
-        }},
-    reducers: {
-        addLocation:(state, action) => {
-            state.location = action.payload.location
-            state.coordinates = {
-                lat: action.payload.coordinates.lat,
-                lng: action.payload.coordinates.lng
-            }
-        },
-        removeLocation:(state) => {
-            state.location = ""
-        }
-    }
-});
-
-export const locationActions = locationSlice.actions;
 
 const store = configureStore({
-    reducer: locationSlice.reducer
+    reducer: locationAndForecastSlice.reducer
 });
+
+export const locationAndForecastActions = locationAndForecastSlice.actions;
 
 export default store;

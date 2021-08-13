@@ -1,6 +1,6 @@
 import Autocomplete from "react-google-autocomplete";
 import { useDispatch } from 'react-redux';
-import { locationActions } from '../store/index';
+import { locationAndForecastActions } from '../store/index';
 
 function PlaceFinder() {
     
@@ -10,7 +10,7 @@ function PlaceFinder() {
 
         const storedAddress = place.address_components[0].long_name + ", " + place.address_components[2].short_name;
         console.log(storedAddress);
-        dispatch(locationActions.addLocation({location: storedAddress}));
+        dispatch(locationAndForecastActions.addLocation({location: storedAddress}));
     }
 
     return(
