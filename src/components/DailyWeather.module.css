@@ -1,10 +1,14 @@
-.daily_weather{
-    margin-left: 43.2%;
-    
+.daily_weather_card{
+    display:flex;
+    flex-direction: row;
+    margin-left:40%;
+    height:50px;
+    width:400px;
+    text-align: center;
 }
 
-.daily_weather_card{
-    margin-left:0px;
-    height:400px;
-    width:300px;
+.daily_weather_card_big{
+    margin-left:40%;
+    width:200px;
+    height:300px;
 }

@@ -7,30 +7,30 @@ import classes from './DailyWeather.module.css';
 function DailyWeather(props) {
 
     const [query, setQuery] = useState("");
-    const [initialTemperature, setInitialTemperature] = useState("");
-    
+    const [latLng, setLatLng] = useState({});
+    const [showFullForecast, setShowFullForecast] = useState(false);
+    const [initialForecast, setInitialForecast] = useState({});
+
     async function getWeather() {
-        
-        if(query === ""){
+        if (query === "") {
             return;
         }
 
-        console.log("Here");
         const data = await fetch(query);
         const retrievedWeather = await data.json();
+        const forecast = retrievedWeather.properties.forecast;
+        const forecastData = await fetch(forecast);
+        const jForecastData = await forecastData.json();
 
-        const toFahrenheit = (retrievedWeather.list[0].main.feels_like - 273.15) * 9/5 + 32;
-        setInitialTemperature(toFahrenheit.toFixed(2));
-    }
+        const locationData = await fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latLng.lat + "," + latLng.lng + "&key=AIzaSyDt7UkFiL_-59O-MTBBSh6mtIt3LUQ6WCc");
+        const jLocationData = await locationData.json();
 
-    async function getWeather() {
-        console.log(query);        
-        const data = await fetch(query);
-        const retrievedWeather = await data.json();
+        setInitialForecast({
+            shortForecast: jForecastData.properties.periods[0].shortForecast,
+            temperature: jForecastData.properties.periods[0].temperature,
+            location: jLocationData.results[6].address_components[0].long_name + ", " + jLocationData.results[6].address_components[2].short_name
+        });
 
-        const toFahrenheit = (retrievedWeather.list[0].main.feels_like - 273.15) * 9/5 + 32;
-        setInitialTemperature(toFahrenheit.toFixed(2));
-        console.log(initialTemperature);
     }
 
     //get user location on load
@@ -38,21 +38,36 @@ function DailyWeather(props) {
         navigator.geolocation.getCurrentPosition(function (position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-            setQuery("api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=2643561c1f305656fc916c1af63cde13");
-        });
+            setLatLng({
+                lat: lat,
+                lng: lng
+            });
 
+            setQuery("https://api.weather.gov/points/" + lat + "," + lng);
+        });
         getWeather();
     }, []);
 
-    
+
 
     return (
-        <div className={classes.daily_weather}>
-            <Card className={classes.daily_weather_card}>
-                <h1>{props.day}</h1>
-                <h2>{initialTemperature}</h2>
-            </Card>
-        </div>
+        <>
+            {!showFullForecast ?
+                <Card className={classes.daily_weather_card}>
+                    <h3>{initialForecast.temperature} &ensp;</h3>
+                    <h3>{initialForecast.location} &ensp;</h3>
+                    <h3>{initialForecast.shortForecast}</h3>
+                    <button onClick={() => { setShowFullForecast(true) }}>symbol</button>
+                </Card>
+                :
+                <Card className={classes.daily_weather_card_big}>
+                    <h3>{initialForecast.temperature} &ensp;</h3>
+                    <h3>{initialForecast.location} &ensp;</h3>
+                    <h3>{initialForecast.shortForecast}</h3>
+                    <button onClick={() => { setShowFullForecast(false) }}>symbol</button>
+                </Card>
+                }
+        </>
 
     )
 }

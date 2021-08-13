@@ -18,7 +18,7 @@ function WeeklyWeather() {
 
     const [storedWeather, setStoredWeather] = useState([]);
 
-    async function getWeather() {
+   /*  async function getWeather() {
         if(userLocation === ""){
             return;
         }
@@ -27,7 +27,7 @@ function WeeklyWeather() {
 
         const toFahrenheit = (retrievedWeather.list[0].main.feels_like - 273.15) * 9/5 + 32;
         console.log(toFahrenheit.toFixed(2));
-    }
+    } */
 
     return (
         <div className={classes.weekly_weather}>
