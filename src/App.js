@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import WeeklyWeatherPage from './pages/WeeklyWeatherPage';
 import DailyWeatherPage from './pages/DailyWeatherPage';
+import PlaceFinder from './components/PlaceFinder';
 
 function App() {
 
@@ -14,7 +15,10 @@ function App() {
         <Route path="/weeklyweatherpage">
           <WeeklyWeatherPage/>
         </Route>
-        <Route exact path="/">
+        <Route path="/findweatherbyplacepage">
+          <PlaceFinder />
+        </Route>
+        <Route exact path="/dailyweatherpage">
           <DailyWeatherPage />
         </Route>
       </Switch>

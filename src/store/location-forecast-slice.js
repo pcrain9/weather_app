@@ -11,7 +11,6 @@ const locationAndForecastSlice = createSlice({
         temperature:0},
     reducers: {
         addLatLng:(state, action) => {
-            console.log("Control flow")
             state.coordinates = {
                 lat: action.payload.coordinates.lat,
                 lng: action.payload.coordinates.lng
