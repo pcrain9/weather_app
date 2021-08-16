@@ -2,6 +2,8 @@ import Autocomplete from "react-google-autocomplete";
 import { useDispatch } from 'react-redux';
 import { locationAndForecastActions } from '../store/index';
 
+import classes from './PlaceFinder.module.css';
+
 function PlaceFinder() {
     
     const dispatch = useDispatch();
@@ -16,7 +18,8 @@ function PlaceFinder() {
     return(
     <Autocomplete
         apiKey="AIzaSyDt7UkFiL_-59O-MTBBSh6mtIt3LUQ6WCc"
-        onPlaceSelected={placeWasSelectedHandler}/>
+        onPlaceSelected={placeWasSelectedHandler}
+        className={classes.search_bar}/>
     );
 }
 

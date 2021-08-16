@@ -1,0 +1,41 @@
+.daily_weather_card_big{
+    margin:auto;
+    margin-top:5px;
+    margin-bottom: 5px;
+    width:600px;
+    height:300px;
+    text-align: center;    
+}
+
+.daily_weather_card_small{
+    height:50px;
+    margin:auto;
+    margin-top:10px;
+    margin-bottom:10px;
+    width:600px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.words_small{
+    margin-left:10px;
+}
+.button_small{
+    height:20px;
+    width:20px;
+    border-radius: 50%;
+    float:right;
+    margin-top:10px;
+    margin-right:5px;
+}
+
+.big_weather_day_display{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.big_weather_day_display_day{
+    margin-left:200px;
+}

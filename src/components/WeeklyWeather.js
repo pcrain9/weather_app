@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import DailyWeather from './DailyWeather';
+import DailyWeatherDisplay from './DailyWeatherDisplay';
 import classes from './WeeklyWeather.module.css';
 
 function WeeklyWeather() {
@@ -10,17 +11,17 @@ function WeeklyWeather() {
 
     return (
         <div className={classes.weekly_weather}>
+            <DailyWeather />    
             {
-                weeklyWeather.map(element => {
+                weeklyWeather.slice(1).map(element => {
                     return (
-                        <DailyWeather
+                        <DailyWeatherDisplay
                             key={element.id}
                             day={element.name}
                             temperature={element.temperature}
                             forecast={element.forecast} />)
                 })
             }
-
         </div>
     )
 }

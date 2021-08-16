@@ -69,7 +69,7 @@ function InitialWeather() {
                     <div className={classes.lds_ring}><div></div><div></div><div></div><div></div></div>
                 </div>
                 :
-                <p>{initial.temperature}<sup>o</sup>F &ensp; {initial.location} &ensp;</p>
+                <p className={classes.show_weather}>{initial.temperature}<sup>o</sup>F &ensp; {initial.location}</p>
                 
             }
         </>

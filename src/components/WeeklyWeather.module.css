@@ -1,6 +1,6 @@
 .weekly_weather{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     animation: loadWeather .5s ease-in;
     text-align: center;

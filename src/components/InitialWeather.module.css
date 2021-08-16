@@ -1,13 +1,13 @@
 .daily_weather{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
     height:75px;
-    width:100%;
-    transform:scaleY(1.1);
 }
 
-
+.show_weather{
+  padding:2px 20px;
+  width:500px;
+  margin-bottom:50px;
+  border-right: 1px solid darkslategray;
+}
 @keyframes dropDown {
         0% {
           transform: scaleY(0);
