@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { locationAndForecastActions, weeklyForecastSliceActions } from '../store/index';
+import { locationAndForecastActions, weeklyForecastSliceActions, isLoadingSliceActions } from '../store/index';
 
 import classes from './InitialWeather.module.css';
 
@@ -8,33 +8,34 @@ function InitialWeather() {
     const dispatch = useDispatch();
     const initial = useSelector(state => state.locationAndForecastSlice);
     const checking = useSelector(state => state.locationAndForecastSlice.coordinates);
-    const [isLoading, setIsloading] = useState(true);
+    const isLoading = useSelector(state => state.isLoadingSlice.loading);
 
     //get user location on load
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
                 if(!navigator.geolocation){
-                    console.log("didnt work in first effect");
                     return;
                 }
-            console.log(position.coords.latitude, position.coords.longitude);
+                console.log("didnt work in first effect");
             dispatch(locationAndForecastActions.addLatLng({ coordinates:
                 {lat: position.coords.latitude,
                 lng: position.coords.longitude}
              })
             );
         });
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
-        if(initial.coordinates.lat === 0){
+        if(initial.coordinates.lat === 0 && initial.coordinates.lat===0){
             console.log("didn't work");
+
             return;
         }
 
         const initialWeather = async () => {
             const query = "https://api.weather.gov/points/" + initial.coordinates.lat + "," + initial.coordinates.lng;
             const data = await fetch(query);
+            
             const retrievedWeather = await data.json();
             
             //retrieve master forecast data
@@ -43,7 +44,6 @@ function InitialWeather() {
             const jForecastData = await forecastData.json();
 
             //store weekly forecast data via dispatch
-            console.log(jForecastData.properties.periods);
             dispatch(weeklyForecastSliceActions.addWeeklyForecast({weeklyForecast: jForecastData.properties.periods}));
 
             const locationData = await fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + initial.coordinates.lat + "," + initial.coordinates.lng + "&key=AIzaSyDt7UkFiL_-59O-MTBBSh6mtIt3LUQ6WCc");
@@ -56,7 +56,7 @@ function InitialWeather() {
                 shortForecast: jForecastData.properties.periods[0].shortForecast,
                 temperature: jForecastData.properties.periods[0].temperature
             }));
-            setIsloading(false);
+            dispatch(isLoadingSliceActions.doneLoading());
         }
         initialWeather();
     }, [checking]);

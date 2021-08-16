@@ -8,17 +8,6 @@
   margin-bottom:50px;
   border-right: 1px solid darkslategray;
 }
-@keyframes dropDown {
-        0% {
-          transform: scaleY(0);
-        }
-        80% {
-          transform: scaleY(1.1);
-        }
-        100% {
-          transform: scaleY(1);
-        }
-      }
 
 .lds_ring {
   display: inline-block;

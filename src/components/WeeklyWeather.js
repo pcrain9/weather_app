@@ -7,11 +7,14 @@ import classes from './WeeklyWeather.module.css';
 
 function WeeklyWeather() {
 
-    const weeklyWeather = useSelector(state => state.weeklyForecastSlice.weeklyWeather);
+    const isLoading = useSelector(state => state.isLoadingSlice.loading);
+    const weeklyWeather = useSelector(state => state.weeklyForecastSlice.weeklyForecast);
 
     return (
         <div className={classes.weekly_weather}>
-            <DailyWeather />    
+            {isLoading ? <div className={classes.daily_weather}>
+                    <div className={classes.lds_ring}><div></div><div></div><div></div><div></div></div>
+                </div>: <DailyWeather />}    
             {
                 weeklyWeather.slice(1).map(element => {
                     return (

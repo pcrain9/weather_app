@@ -6,7 +6,7 @@ import Card from '../UI/Card';
 
 function DailyWeather() {
 
-    const singleDayWeather = useSelector(state => state.weeklyForecastSlice.weeklyWeather);
+    const singleDayWeather = useSelector(state => state.weeklyForecastSlice.weeklyForecast);
 
     return (
         <Card className={classes.daily_weather_card_big}>

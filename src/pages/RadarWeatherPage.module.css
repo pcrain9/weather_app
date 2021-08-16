@@ -1,0 +1,5 @@
+.background_color{
+    display:inline-block;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(61,61,141,1) 35%, rgba(0,212,255,1) 100%);
+}
