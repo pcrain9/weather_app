@@ -3,3 +3,18 @@
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(61,61,141,1) 35%, rgba(0,212,255,1) 100%);
 }
+
+.text_content{
+    text-align:center;
+    color:white;
+    margin-top:50px;
+    margin-left:500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.list{
+    list-style-type: none;
+    text-align: center;
+}

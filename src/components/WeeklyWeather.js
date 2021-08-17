@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import Spinner from '../UI/Spinner';
 import DailyWeather from './DailyWeather';
 import DailyWeatherDisplay from './DailyWeatherDisplay';
 import classes from './WeeklyWeather.module.css';
@@ -13,7 +14,7 @@ function WeeklyWeather() {
     return (
         <div className={classes.weekly_weather}>
             {isLoading ? <div className={classes.daily_weather}>
-                    <div className={classes.lds_ring}><div></div><div></div><div></div><div></div></div>
+                    <Spinner />
                 </div>: <DailyWeather />}    
             {
                 weeklyWeather.slice(1).map(element => {

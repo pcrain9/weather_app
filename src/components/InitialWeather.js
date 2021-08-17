@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { locationAndForecastActions, weeklyForecastSliceActions, isLoadingSliceActions } from '../store/index';
 
+import Spinner from '../UI/Spinner';
 import classes from './InitialWeather.module.css';
 
 function InitialWeather() {
@@ -66,7 +67,7 @@ function InitialWeather() {
         <>
             {isLoading ?
                 <div className={classes.daily_weather}>
-                    <div className={classes.lds_ring}><div></div><div></div><div></div><div></div></div>
+                    <Spinner />
                 </div>
                 :
                 <p className={classes.show_weather}>{initial.temperature}<sup>o</sup>F &ensp; {initial.location}</p>

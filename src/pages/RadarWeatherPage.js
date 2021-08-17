@@ -1,18 +1,23 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import classes from './RadarWeatherPage.module.css';
 
 function DefaultWeatherPage() {
 
-    async function getLocation() {
-        const data = await fetch("https://tilecache.rainviewer.com/v2/radar/1629133800/256/39.0473/-95.6752/0/1_0");
-        const jData = await data.json();
-        console.log(jData);
-    }
-
     return (
         <div className={classes.background_color}>
-            <button onClick={getLocation} ></button>
+            <div className={classes.text_content}>
+                <h1>Welcome to the Weather!</h1>
+                <h2>Click any of the links above to get started</h2>
+                <p>This site uses data from the following websites: 
+                    <ul className={classes.list}>
+                        <li ><a href="https://api.weather.gov">api.weather.gov</a></li>
+                        <li className={classes.list}><a href="maps.googleapis.com">maps.googleapis.com</a></li>
+                    <br/><br/><br/><br/><br/>
+                    </ul>
+                </p>
+            </div>
         </div>
     )
 }

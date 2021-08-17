@@ -1,7 +1,6 @@
 import Autocomplete from "react-google-autocomplete";
 import { useDispatch } from 'react-redux';
 import { weeklyForecastSliceActions, isLoadingSliceActions } from '../store/index';
-import isLoadingSlice from "../store/is-loading-slice";
 
 import classes from './PlaceFinder.module.css';
 

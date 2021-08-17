@@ -1,7 +1,5 @@
 .daily_weather_card_big{
     margin:auto;
-    margin-top:5px;
-    margin-bottom: 5px;
     width:600px;
     height:300px;
     animation: loadWeather .5s ease-out;
