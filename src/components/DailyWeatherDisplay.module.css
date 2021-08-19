@@ -4,7 +4,8 @@
     margin-bottom: 5px;
     width:600px;
     height:300px;
-    text-align: center;    
+    text-align:left;
+    padding:5px;    
 }
 
 .daily_weather_card_small{
@@ -37,5 +38,4 @@
 }
 
 .big_weather_day_display_day{
-    margin-left:200px;
 }

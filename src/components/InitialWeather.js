@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { locationAndForecastActions, weeklyForecastSliceActions, isLoadingSliceActions } from '../store/index';
 
@@ -17,14 +17,14 @@ function InitialWeather() {
                 if(!navigator.geolocation){
                     return;
                 }
-                console.log("didnt work in first effect");
+                console.log(position.coords.latitude);
             dispatch(locationAndForecastActions.addLatLng({ coordinates:
                 {lat: position.coords.latitude,
                 lng: position.coords.longitude}
              })
             );
         });
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         if(initial.coordinates.lat === 0 && initial.coordinates.lat===0){
@@ -59,7 +59,7 @@ function InitialWeather() {
             }));
             dispatch(isLoadingSliceActions.doneLoading());
         }
-        initialWeather();
+        initialWeather().catch(alert);
     }, [checking]);
 
     

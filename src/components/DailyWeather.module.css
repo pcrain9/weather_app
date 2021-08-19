@@ -1,10 +1,11 @@
 .daily_weather_card_big{
-    margin:auto;
     width:600px;
     height:300px;
+    margin:auto;
     animation: loadWeather .5s ease-out;
     background-color: white;
     text-align: center;
+    border-radius: 10px;
 }
 
 @keyframes loadWeather {
@@ -17,15 +18,13 @@
     
 }    
 
-.big_weather_day_display{
-    display:flex;
-    background-color: white;
-    flex-direction: row;
-    justify-content: space-between;
-    border-radius: 10px;
-}
-
 .big_weather_day_display_day{
     background-color: white;
-    margin-left:200px;
+    border-radius: 25px;
+    text-align: center;
+    margin-top:0px;
+}
+
+.long_forecast{
+    padding-right: 5px; 
 }

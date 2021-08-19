@@ -14,7 +14,7 @@ function DailyWeather() {
                 <h1 className={classes.big_weather_day_display_day}>{singleDayWeather[0].name}</h1>
             </span>
             <h5>{singleDayWeather[0].temperature}<sup>o</sup>F</h5>
-            <p>{singleDayWeather[0].forecast}</p>
+            <p className={classes.long_forecast}>{singleDayWeather[0].forecast}</p>
 
         </Card>
     )

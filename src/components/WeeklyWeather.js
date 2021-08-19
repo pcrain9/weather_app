@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Route } from 'react-router-dom';
 
+import RadarWeatherPage from '../pages/RadarWeatherPage';
 import Spinner from '../UI/Spinner';
 import DailyWeather from './DailyWeather';
 import DailyWeatherDisplay from './DailyWeatherDisplay';
@@ -10,6 +12,14 @@ function WeeklyWeather() {
 
     const isLoading = useSelector(state => state.isLoadingSlice.loading);
     const weeklyWeather = useSelector(state => state.weeklyForecastSlice.weeklyForecast);
+
+    if(weeklyWeather === undefined){
+        return(
+            <Route exact path="/">
+                <RadarWeatherPage />
+            </Route>
+        )
+    }
 
     return (
         <div className={classes.weekly_weather}>
