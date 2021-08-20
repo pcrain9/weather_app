@@ -14,6 +14,7 @@ function WeeklyWeather() {
     const weeklyWeather = useSelector(state => state.weeklyForecastSlice.weeklyForecast);
 
     if(weeklyWeather === undefined){
+        console.log("Here");
         return(
             <Route exact path="/">
                 <RadarWeatherPage />

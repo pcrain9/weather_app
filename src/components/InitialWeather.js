@@ -14,55 +14,56 @@ function InitialWeather() {
     //get user location on load
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
-                if(!navigator.geolocation){
-                    return;
+            if (!navigator.geolocation) {
+                return;
+            }
+            dispatch(locationAndForecastActions.addLatLng({
+                coordinates:
+                {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
                 }
-                console.log(position.coords.latitude);
-            dispatch(locationAndForecastActions.addLatLng({ coordinates:
-                {lat: position.coords.latitude,
-                lng: position.coords.longitude}
-             })
+            })
             );
         });
     }, []);
 
     useEffect(() => {
-        if(initial.coordinates.lat === 0 && initial.coordinates.lat===0){
-            console.log("didn't work");
+        if (initial.coordinates.lat === 0 && initial.coordinates.lat === 0) {
 
             return;
         }
-
         const initialWeather = async () => {
-            const query = "https://api.weather.gov/points/" + initial.coordinates.lat + "," + initial.coordinates.lng;
-            const data = await fetch(query);
             
-            const retrievedWeather = await data.json();
-            
-            //retrieve master forecast data
-            const forecast = retrievedWeather.properties.forecast;
-            const forecastData = await fetch(forecast);
-            const jForecastData = await forecastData.json();
+                const query = "https://api.weather.gov/points/" + initial.coordinates.lat + "," + initial.coordinates.lng;
+                const data = await fetch(query);
 
-            //store weekly forecast data via dispatch
-            dispatch(weeklyForecastSliceActions.addWeeklyForecast({weeklyForecast: jForecastData.properties.periods}));
+                const retrievedWeather = await data.json();
 
-            const locationData = await fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + initial.coordinates.lat + "," + initial.coordinates.lng + "&key=AIzaSyDt7UkFiL_-59O-MTBBSh6mtIt3LUQ6WCc");
-            const jLocationData = await locationData.json();
+                //retrieve master forecast data
+                const forecast = retrievedWeather.properties.forecast;
+                const forecastData = await fetch(forecast);
+                const jForecastData = await forecastData.json();
 
-            const location = jLocationData.results[6].address_components[0].long_name + ", " + jLocationData.results[6].address_components[2].short_name;
+                //store weekly forecast data via dispatch
+                dispatch(weeklyForecastSliceActions.addWeeklyForecast({ weeklyForecast: jForecastData.properties.periods }));
 
-            dispatch(locationAndForecastActions.setLocation({ location: location }));
-            dispatch(locationAndForecastActions.setInitialForecast({
-                shortForecast: jForecastData.properties.periods[0].shortForecast,
-                temperature: jForecastData.properties.periods[0].temperature
-            }));
-            dispatch(isLoadingSliceActions.doneLoading());
-        }
-        initialWeather().catch(alert);
+                const locationData = await fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + initial.coordinates.lat + "," + initial.coordinates.lng + "&key=AIzaSyDt7UkFiL_-59O-MTBBSh6mtIt3LUQ6WCc");
+                const jLocationData = await locationData.json();
+
+                const location = jLocationData.results[6].address_components[0].long_name + ", " + jLocationData.results[6].address_components[2].short_name;
+
+                dispatch(locationAndForecastActions.setLocation({ location: location }));
+                dispatch(locationAndForecastActions.setInitialForecast({
+                    shortForecast: jForecastData.properties.periods[0].shortForecast,
+                    temperature: jForecastData.properties.periods[0].temperature
+                }));
+                dispatch(isLoadingSliceActions.doneLoading());
+            }
+        initialWeather();
     }, [checking]);
 
-    
+
     return (
         <>
             {isLoading ?
@@ -71,7 +72,7 @@ function InitialWeather() {
                 </div>
                 :
                 <p className={classes.show_weather}>{initial.temperature}<sup>o</sup>F &ensp; {initial.location}</p>
-                
+
             }
         </>
 

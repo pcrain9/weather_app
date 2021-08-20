@@ -8,27 +8,35 @@ function PlaceFinder() {
 
     const dispatch = useDispatch();
 
-    function placeWasSelectedHandler(place) {
-
-        dispatch(isLoadingSliceActions.beginLoading());
+    async function placeWasSelectedHandler(place) {
         
-        async function fetchNewLocation(){
+        dispatch(isLoadingSliceActions.beginLoading());
+
         const query = "https://api.weather.gov/points/" + place.geometry.location.lat() + "," + place.geometry.location.lng();
-        const data = await fetch(query);
-        const retrievedWeather = await data.json();
+
+        var data, retrievedWeather;
+        try{ 
+            data = await fetch(query);
+            retrievedWeather = await data.json();
+        }catch(error){
+            console.log(error);
+        }
 
         //retrieve master forecast data
         const forecast = retrievedWeather.properties.forecast;
-        const forecastData = await fetch(forecast);
-        const jForecastData = await forecastData.json();
+        var forecastData, jForecastData
+        try{ 
+            forecastData = await fetch(forecast);
+            jForecastData = await forecastData.json();
+        }catch(error){
+            console.log(error);
+        }
 
         //store weekly forecast data via dispatch
         dispatch(weeklyForecastSliceActions.addWeeklyForecast({weeklyForecast: jForecastData.properties.periods}));
         dispatch(isLoadingSliceActions.doneLoading());
         }
-        fetchNewLocation.catch(alert);
-    }
-
+     
     return (
         <Autocomplete
             apiKey="AIzaSyDt7UkFiL_-59O-MTBBSh6mtIt3LUQ6WCc"
