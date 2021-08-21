@@ -16,8 +16,8 @@ function HomePage() {
             <div className={classes.nav}>
                 <NavLink to="/weeklyweatherpage" className={classes.weekly_weather}><p>Weekly Weather</p></NavLink>
                 {!userQueried ? <div className={classes.get_location}
-                onClick={()=> {setUserQueried(true)}}><p>Search weather by location</p></div> :
-                <PlaceFinder />}
+                    onClick={() => { setUserQueried(true) }}><p>Search weather by location</p></div> :
+                    <PlaceFinder />}
                 <NavLink to="/dailyweatherpage" className={classes.daily_weather}><p>Daily Weather</p></NavLink>
             </div >
         </>
