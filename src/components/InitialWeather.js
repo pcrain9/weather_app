@@ -8,7 +8,6 @@ import classes from './InitialWeather.module.css';
 function InitialWeather() {
     const dispatch = useDispatch();
     const initial = useSelector(state => state.locationAndForecastSlice);
-    const checking = useSelector(state => state.locationAndForecastSlice.coordinates);
     const isLoading = useSelector(state => state.isLoadingSlice.loading);
     const errorOccurred = useSelector(state => state.isLoadingSlice.hasError);
 
