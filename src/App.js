@@ -15,7 +15,7 @@ function App() {
       <HomePage />
       <div className={classes.background_color}>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path='/weather_app'>
             <RadarWeatherPage />
           </Route>
           <Route path="/weeklyweatherpage">

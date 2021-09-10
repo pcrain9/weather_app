@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { weeklyForecastSliceActions, isLoadingSliceActions } from '../store/index';
 
 import classes from './PlaceFinder.module.css';
-import isLoadingSlice from "../store/is-loading-slice";
 
 function PlaceFinder() {
     const dispatch = useDispatch();
@@ -61,7 +60,7 @@ function PlaceFinder() {
             {!errorOccurred ?
 
                 <Autocomplete
-                    apiKey="AIzaSyDt7UkFiL_-59O-MTBBSh6mtIt3LUQ6WCc"
+                    apiKey=""
                     onPlaceSelected={placeWasSelectedHandler}
                     className={classes.search_bar}
                     onFocus={() => {
@@ -70,7 +69,7 @@ function PlaceFinder() {
                     }}
                 /> :
                 <Autocomplete
-                    apiKey="AIzaSyDt7UkFiL_-59O-MTBBSh6mtIt3LUQ6WCc"
+                    apiKey=""
                     onPlaceSelected={placeWasSelectedHandler}
                     className={classes.search_bar}
                     defaultValue="Couldn't load that :( try again!"
